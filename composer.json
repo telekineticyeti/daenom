@@ -1,0 +1,22 @@
+{
+	"name": "telekineticyeti/daenom",
+	"description": "A IFTTT endpoint that retrieves media files from Twitter and Tumblr",
+	"version": "1.0.0",
+	"type": "project",
+	"keywords": ["api", "twitter", "tumblr", "imagemagick"],
+	"homepage": "https://github.com/telekineticyeti/daenom",
+	"time": "2017-12-13",
+	"license": "GPL-3.0",
+	"authors": [
+		{
+			"name": "Paul Castle",
+			"email": "paul.castle@gmail.com",
+			"homepage": "http://mindres.in",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"j7mbo/twitter-api-php": "^1.0",
+		"tumblr/tumblr": "^0.2.0"
+	}
+}
