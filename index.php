@@ -94,9 +94,8 @@
 		$im->resetIterator();
 		$combined = $im->appendImages(true);
 
-		$combined->setImageFormat("png");
-		// $combined->setCompression(Imagick::COMPRESSION_JPEG);
-		// $combined->setCompressionQuality(0);
+		$combined->setCompression(Imagick::COMPRESSION_JPEG);
+		$combined->setCompressionQuality(90);
 		return $combined;
 	}
 
@@ -177,9 +176,9 @@
 				array_push($images, $v['media_url']);
 			}
 
-			header("Content-Type: image/png");
+			header("Content-Type: image/jpg");
 			echo multi_image_stitch($images);
-		} 
+		}
 		exit();
 	}
 
@@ -225,12 +224,11 @@
 				array_push($images, $v['original_size']['url']);
 			}
 
-			header("Content-Type: image/png");
+			header("Content-Type: image/jpg");
 			echo multi_image_stitch($images);
 		}
 		exit();
-	} // Method: Tumblr
-
+	}
 
 
 	/**
@@ -297,25 +295,25 @@
 <script>
 	$(function() {
 		function syntaxHighlight(json) {
-		    if (typeof json != 'string') {
-		         json = JSON.stringify(json, undefined, 2);
-		    }
-		    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-		    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-		        var cls = 'number';
-		        if (/^"/.test(match)) {
-		            if (/:$/.test(match)) {
-		                cls = 'key';
-		            } else {
-		                cls = 'string';
-		            }
-		        } else if (/true|false/.test(match)) {
-		            cls = 'boolean';
-		        } else if (/null/.test(match)) {
-		            cls = 'null';
-		        }
-		        return '<span class="' + cls + '">' + match + '</span>';
-		    });
+			if (typeof json != 'string') {
+				 json = JSON.stringify(json, undefined, 2);
+			}
+			json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+			return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+				var cls = 'number';
+				if (/^"/.test(match)) {
+					if (/:$/.test(match)) {
+						cls = 'key';
+					} else {
+						cls = 'string';
+					}
+				} else if (/true|false/.test(match)) {
+					cls = 'boolean';
+				} else if (/null/.test(match)) {
+					cls = 'null';
+				}
+				return '<span class="' + cls + '">' + match + '</span>';
+			});
 		}
 		var json = $('.json').text();
 		$('.json').html(syntaxHighlight(json))
